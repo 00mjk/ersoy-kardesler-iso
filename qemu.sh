@@ -1,7 +1,7 @@
 #!/bin/sh
 # Ersoy Kardesler Linux test script
 # Copyright (C) 2017-2021 John Davidson
-#               2021      Ercan Ersoy and Erdem Ersoy
+#               2021-2022 Ercan Ersoy and Erdem Ersoy
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,4 +16,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-qemu-system-i386 -m 128M -cdrom ersoy_kardesler_linux.iso -boot d -vga std
+qemu-system-x86_64 -m 128M -cdrom ersoy_kardesler_linux.iso -boot d -vga std
