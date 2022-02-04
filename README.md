@@ -4,7 +4,7 @@ A Linux ISO image build script based on [Minimal Linux Script](https://github.co
 
 Copyright (C) 2016-2021 John Davidson, 2021-2022 Ercan Ersoy and Erdem Ersoy
 
-The source bundles are downloaded and compiled automatically. The script requires cross musl-based toolchain. [Our toolchain build configuration](https://kod.pardus.org.tr/ersoy-kardesler/ersoy-kardesler-linux-libre/ersoy-kardesler-linux-libre-toolchain-build-configuration) is recommended.
+The source bundles are downloaded and compiled automatically. The script requires cross musl-based toolchain. [Our toolchain build configuration](https://github.com/Ersoy-Kardesler/buildroot-configs) is recommended.
 
 If you are using [Pardus](https://www.pardus.org.tr) or [Debian](https://www.debian.org), you should be able to resolve all build dependencies by executing the following command:
 
