@@ -23,6 +23,7 @@ set -ex
 
 # Build Configuration
 ARCH=amd64
+ARCH_GENERAL=x86
 HOST=x86_64-buildroot-linux-musl
 CROSS=${HOST}-
 
@@ -85,7 +86,7 @@ make distclean x86_64_defconfig
 
 cp -T ../../configs/linux-config .config
 
-ARCH=${ARCH} CROSS_COMPILE=${CROSS} make savedefconfig bzImage
+ARCH=${ARCH_GENERAL} CROSS_COMPILE=${CROSS} make savedefconfig bzImage
 
 cp arch/x86/boot/bzImage ../../isoimage/kernel.gz
 
