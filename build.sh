@@ -21,12 +21,6 @@
 set -ex
 
 
-# Build Configuration
-ARCH=amd64
-HOST=x86_64-buildroot-linux-musl
-CROSS=${HOST}-
-
-
 # Linux-libre Package
 LINUX_LIBRE_VERSION_NOT_GNU=5.10.96
 LINUX_LIBRE_VERSION=${LINUX_LIBRE_VERSION_NOT_GNU}-gnu1
@@ -85,7 +79,7 @@ make distclean x86_64_defconfig
 
 cp -T ../../configs/linux-config .config
 
-CROSS_COMPILE=${CROSS} make savedefconfig bzImage
+make savedefconfig bzImage
 
 cp arch/x86/boot/bzImage ../../isoimage/kernel.gz
 
@@ -99,7 +93,7 @@ make distclean defconfig
 
 cp -T ../../configs/busybox-config .config
 
-ARCH=${ARCH} CROSS_COMPILE=${CROSS} make busybox install
+make busybox install
 
 cp -r _install/* ../../rootfs
 
