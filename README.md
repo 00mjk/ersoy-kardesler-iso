@@ -10,4 +10,4 @@ If you are using [Pardus](https://www.pardus.org.tr) or [Debian](https://www.deb
 
     sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 
-The script doesn't require root privileges. In the end you should have a bootable ISO image named `ersoy_kardesler_linux.iso` in the same directory where you executed the script.
+The script doesn't require root privileges. In the end you should have a bootable ISO image named `ersoy_kardesler.iso` in the same directory where you executed the script.

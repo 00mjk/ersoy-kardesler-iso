@@ -136,7 +136,7 @@ cp bios/com32/elflink/ldlinux/ldlinux.c32 ../../isoimage
 
 echo 'default kernel.gz initrd=rootfs.gz' > ../../isoimage/isolinux.cfg
 
-xorriso -as mkisofs -o ../../ersoy_kardesler_linux.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 20 -boot-info-table ../../isoimage
+xorriso -as mkisofs -o ../../ersoy_kardesler.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 20 -boot-info-table ../../isoimage
 
 cd ../..
 
