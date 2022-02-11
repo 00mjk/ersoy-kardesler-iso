@@ -6,7 +6,7 @@ Copyright (C) 2016-2021 John Davidson, 2021-2022 Ercan Ersoy and Erdem Ersoy
 
 The source bundles are downloaded and compiled automatically. The script requires host toolchain.
 
-If you are using [Pardus](https://www.pardus.org.tr) or [Debian](https://www.debian.org), you should be able to resolve all build dependencies by executing the following command:
+If you are using [Pardus](https://www.pardus.org.tr), [Debian](https://www.debian.org) or [Linux Mint](https://linuxmint.com/), you should be able to resolve all build dependencies by executing the following command:
 
     sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 
