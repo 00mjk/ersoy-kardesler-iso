@@ -1,5 +1,5 @@
-./isoimage
-./packages
-./packages-extracted
-./rootfs
-ersoy-kardesler.iso
+isoimage/
+packages/
+packages_extracted/
+rootfs/
+*.iso
