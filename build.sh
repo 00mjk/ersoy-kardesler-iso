@@ -103,8 +103,9 @@ cd ../..
 # Prepare root filesystem with some changes
 cd rootfs
 
-mkdir dev proc sys tmp
+mkdir dev etc proc sys tmp
 
+## Adds /init
 echo '#!/bin/sh' > init
 echo 'dmesg -n 1' >> init
 echo 'mount -t devtmpfs none /dev' >> init
@@ -113,9 +114,17 @@ echo 'mount -t tmpfs none /tmp -o mode=1777' >> init
 echo 'mount -t sysfs none /sys' >> init
 echo 'mkdir -p /dev/pts' >> init
 echo 'mount -t devpts none /dev/pts' >> init
-echo 'setsid cttyhack /bin/sh' >> init
+echo 'cat /etc/welcome.txt' >> init
+echo 'exec setsid cttyhack /bin/sh' >> init
 
 chmod +x init
+
+## Adds /etc/welcome.txt
+echo '*********************************************' > etc/welcome.txt
+echo '*                                           *' >> etc/welcome.txt
+echo '* Welcome to Ersoy Kardesler Linux-libre OS *' >> etc/welcome.txt
+echo '*                                           *' >> etc/welcome.txt
+echo '*********************************************' >> etc/welcome.txt
 
 cd ..
 
@@ -128,7 +137,7 @@ find ./* | cpio -R root:root -H newc -o | gzip > ../isoimage/rootfs.gz
 cd ..
 
 
-# Copy ISOLINUX files to ISO filesystem and Make ISO
+# Copy ISOLINUX files to ISO filesystem and Make ISOcd 
 cd packages_extracted/${SYSLINUX_NAME_AND_VERSION}
 
 cp bios/core/isolinux.bin ../../isoimage
