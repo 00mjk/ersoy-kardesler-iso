@@ -114,17 +114,17 @@ echo 'mount -t tmpfs none /tmp -o mode=1777' >> init
 echo 'mount -t sysfs none /sys' >> init
 echo 'mkdir -p /dev/pts' >> init
 echo 'mount -t devpts none /dev/pts' >> init
-echo 'cat /etc/welcome.txt' >> init
+echo 'cat /etc/motd' >> init
 echo 'exec setsid cttyhack /bin/sh' >> init
 
 chmod +x init
 
-## Adds /etc/welcome.txt
-echo '*********************************************' > etc/welcome.txt
-echo '*                                           *' >> etc/welcome.txt
-echo '* Welcome to Ersoy Kardesler Linux-libre OS *' >> etc/welcome.txt
-echo '*                                           *' >> etc/welcome.txt
-echo '*********************************************' >> etc/welcome.txt
+## Adds /etc/motd
+echo '*********************************************' > etc/motd
+echo '*                                           *' >> etc/motd
+echo '* Welcome to Ersoy Kardesler Linux-libre OS *' >> etc/motd
+echo '*                                           *' >> etc/motd
+echo '*********************************************' >> etc/motd
 
 cd ..
 
