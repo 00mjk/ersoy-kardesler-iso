@@ -14,4 +14,4 @@ The script doesn't require root privileges. In the end you should have a bootabl
 
 ## License
 
-Everything except configs are licensedwith GPLv3. The configs are licensed in GPLv2.
+Everything except configs are licensed with GPLv3. The configs are licensed in GPLv2.
