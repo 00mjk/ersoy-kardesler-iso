@@ -1,6 +1,6 @@
 # Ersoy Kardesler ISO
 
-A Linux ISO image build script based on [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script)
+A Linux-libre ISO image build script based on [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script).
 
 Copyright (C) 2016-2021 John Davidson, 2021-2022 Ercan Ersoy and Erdem Ersoy
 
