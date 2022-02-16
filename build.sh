@@ -108,20 +108,6 @@ mkdir -p etc/init.d
 mkdir -p proc/sys/kernel
 mkdir -p var/log
 
-## Add /init
-# echo '#!/bin/sh' > init
-# echo 'dmesg -n 1' >> init
-# echo 'mount -t devtmpfs none /dev' >> init
-# echo 'mount -t proc proc /proc' >> init
-# echo 'mount -t tmpfs none /tmp -o mode=1777' >> init
-# echo 'mount -t sysfs sysfs /sys' >> init
-# echo 'mkdir -p /dev/pts' >> init
-# echo 'mount -t devpts none /dev/pts' >> init
-# echo 'cat /etc/motd' >> init
-# echo 'exec setsid cttyhack /bin/sh' >> init
-
-# chmod +x init
-
 ## Add /etc/group
 echo 'root:x:0:' > etc/group
 echo 'daemon:x:1:' >> etc/group
