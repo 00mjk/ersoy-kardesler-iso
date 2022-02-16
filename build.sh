@@ -106,7 +106,6 @@ cd rootfs
 mkdir dev sys tmp
 mkdir -p etc/init.d
 mkdir -p proc/sys/kernel
-mkdir -p var/log
 
 ## Add /etc/group
 echo 'root:x:0:' > etc/group
@@ -123,6 +122,13 @@ echo '#!/bin/sh' > etc/init.d/rcS
 echo 'dmesg -n 1' >> etc/init.d/rcS
 echo 'mount -t proc proc /proc' >> etc/init.d/rcS
 echo 'mount -t sysfs sysfs /sys' >> etc/init.d/rcS
+echo 'mount -t tmpfs -o size=64m tmp_files /tmp' >> etc/init.d/rcS
+echo 'ln -s /tmp /var/cache' >> etc/init.d/rcS
+echo 'ln -s /tmp /var/lock' >> etc/init.d/rcS
+echo 'ln -s /tmp /var/log' >> etc/init.d/rcS
+echo 'ln -s /tmp /var/run' >> etc/init.d/rcS
+echo 'ln -s /tmp /var/spool' >> etc/init.d/rcS
+echo 'ln -s /tmp /var/tmp' >> etc/init.d/rcS
 echo 'mount -t devtmpfs devtmpfs /dev' >> etc/init.d/rcS
 echo 'echo /sbin/mdev > /proc/sys/kernel/hotplug' >> etc/init.d/rcS
 echo 'mdev -s' >> etc/init.d/rcS
