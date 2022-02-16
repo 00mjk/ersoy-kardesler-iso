@@ -1,4 +1,4 @@
-# Ersoy Kardesler Linux-libre Build Script
+# Ersoy Kardesler ISO
 
 A Linux ISO image build script based on [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script)
 
