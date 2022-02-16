@@ -103,8 +103,9 @@ cd ../..
 # Prepare root filesystem with some changes
 cd rootfs
 
-mkdir dev proc sys tmp
+mkdir dev sys tmp
 mkdir -p etc/init.d
+mkdir -p proc/sys/kernel
 mkdir -p var/log
 
 ## Add /init
@@ -127,17 +128,25 @@ echo 'daemon:x:1:' >> etc/group
 
 ## Add /etc/inittab
 echo '::sysinit:/etc/init.d/rcS' > etc/inittab
-echo '::askfirst:-/bin/ash' >> etc/inittab
 echo '::respawn:/sbin/syslogd -n' >> etc/inittab
 echo '::respawn:/sbin/klogd -n' >> etc/inittab
+echo '::respawn:/sbin/getty 115200 console' >> etc/inittab
 
 ## Add /etc/init.d/rcS
 echo '#!/bin/sh' > etc/init.d/rcS
 echo 'dmesg -n 1' >> etc/init.d/rcS
 echo 'mount -t proc proc /proc' >> etc/init.d/rcS
 echo 'mount -t sysfs sysfs /sys' >> etc/init.d/rcS
+echo 'mount -t devtmpfs devtmpfs /dev' >> etc/init.d/rcS
+echo 'echo /sbin/mdev > /proc/sys/kernel/hotplug' >> etc/init.d/rcS
+echo 'mdev -s' >> etc/init.d/rcS
 
 chmod +x etc/init.d/rcS
+
+## Add /etc/mdev.conf
+echo 'null root:root 666' > etc/mdev.conf
+echo 'random root:root 444' >> etc/mdev.conf
+echo 'urandom root:root 444' >> etc/mdev.conf
 
 ## Add /etc/motd
 echo '*********************************' > etc/motd
@@ -152,7 +161,6 @@ echo 'daemon:x:1:1:daemon:/usr/sbin:/bin/false' >> etc/passwd
 
 ## Add /etc/profile
 echo '#!/bin/sh' > etc/profile
-echo 'cat /etc/motd' >> etc/profile
 
 chmod +x etc/profile
 
@@ -160,6 +168,7 @@ chmod +x etc/profile
 echo 'root::10933:0:99999:7:::' > etc/shadow
 echo 'daemon:*:10933:0:99999:7:::' >> etc/shadow
 
+chmod 0600 etc/shadow
 
 # Package root filesystem and copy root filesystem to ISO filesystem
 
