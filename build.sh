@@ -103,28 +103,50 @@ cd ../..
 # Prepare root filesystem with some changes
 cd rootfs
 
-mkdir dev etc proc sys tmp
+mkdir dev proc sys tmp
+mkdir -p etc/init.d
+mkdir -p var/log
 
-## Adds /init
-echo '#!/bin/sh' > init
-echo 'dmesg -n 1' >> init
-echo 'mount -t devtmpfs none /dev' >> init
-echo 'mount -t proc proc /proc' >> init
-echo 'mount -t tmpfs none /tmp -o mode=1777' >> init
-echo 'mount -t sysfs sysfs /sys' >> init
-echo 'mkdir -p /dev/pts' >> init
-echo 'mount -t devpts none /dev/pts' >> init
-echo 'cat /etc/motd' >> init
-echo 'exec setsid cttyhack /bin/sh' >> init
+## Add /init
+# echo '#!/bin/sh' > init
+# echo 'dmesg -n 1' >> init
+# echo 'mount -t devtmpfs none /dev' >> init
+# echo 'mount -t proc proc /proc' >> init
+# echo 'mount -t tmpfs none /tmp -o mode=1777' >> init
+# echo 'mount -t sysfs sysfs /sys' >> init
+# echo 'mkdir -p /dev/pts' >> init
+# echo 'mount -t devpts none /dev/pts' >> init
+# echo 'cat /etc/motd' >> init
+# echo 'exec setsid cttyhack /bin/sh' >> init
 
-chmod +x init
+# chmod +x init
 
-## Adds /etc/motd
-echo '*********************************************' > etc/motd
-echo '*                                           *' >> etc/motd
-echo '* Welcome to Ersoy Kardesler Linux-libre OS *' >> etc/motd
-echo '*                                           *' >> etc/motd
-echo '*********************************************' >> etc/motd
+## Add /etc/inittab
+echo '::sysinit:/etc/init.d/rcS' > etc/inittab
+echo '::askfirst:-/bin/ash' >> etc/inittab
+# echo '::respawn:/sbin/syslogd -n' >> etc/inittab
+# echo '::respawn:/sbin/klogd -n' >> etc/inittab
+
+## Add /etc/init.d/rcS
+echo '#!/bin/sh' > etc/init.d/rcS
+echo 'dmesg -n 1' >> /etc/init.d/rcS
+echo 'mount -t proc proc /proc' >> etc/init.d/rcS
+echo 'mount -t sysfs sysfs /sys' >> etc/init.d/rcS
+
+chmod +x etc/init.d/rcS
+
+## Add /etc/profile
+echo '!#/bin/sh' > etc/profile
+echo 'cat /etc/motd' >> etc/profile
+
+chmod +x etc/profile
+
+## Add /etc/motd
+echo '*********************************' > etc/motd
+echo '*                               *' >> etc/motd
+echo '* Welcome to Ersoy Kardesler OS *' >> etc/motd
+echo '*                               *' >> etc/motd
+echo '*********************************' >> etc/motd
 
 cd ..
 
@@ -143,7 +165,7 @@ cd packages_extracted/${SYSLINUX_NAME_AND_VERSION}
 cp bios/core/isolinux.bin ../../isoimage
 cp bios/com32/elflink/ldlinux/ldlinux.c32 ../../isoimage
 
-echo 'default kernel.gz initrd=rootfs.gz vga=ask' > ../../isoimage/isolinux.cfg
+echo 'default kernel.gz initrd=rootfs.gz rdinit=/sbin/init console=tty0 vga=ask' > ../../isoimage/isolinux.cfg
 
 xorriso -as mkisofs -o ../../ersoy_kardesler.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 20 -boot-info-table ../../isoimage
 
